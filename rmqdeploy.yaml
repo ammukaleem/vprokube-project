@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vprormq01
+  labels:
+    app: vprormqo1
+spec:
+  selector:
+    matchLabels:
+      app: vprormq01
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vprormq01
+    spec:
+      containers:
+      - image: imranvisualpath/vpromultidb
+        env:
+        - name: vprormq01
+          username: RABBITMQ_DEFAULT_USER
+          value: guest
+         
+        - name: RABBITMQ_DEFAULT_PASS 
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: password
+        ports:
+        - containerPort: 15672
+          name: vprormq01
+        
