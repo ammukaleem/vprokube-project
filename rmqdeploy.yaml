@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: vprormq01
   labels:
-    app: vprormqo1
+    app: vprormq01
 spec:
   selector:
     matchLabels:
@@ -15,18 +15,19 @@ spec:
         app: vprormq01
     spec:
       containers:
-      - image: imranvisualpath/vpromultidb
-        env:
         - name: vprormq01
-          username: RABBITMQ_DEFAULT_USER
-          value: guest
-         
-        - name: RABBITMQ_DEFAULT_PASS 
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: password
-        ports:
-        - containerPort: 15672
-          name: vprormq01
-        
+          image: rabbitmq
+          env:
+            - name: RABBITMQ_DEFAULT_USER  # Correct the variable name
+              value: guest
+
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:                  # Corrected indentation
+                  name: app-secret
+                  key: rmq-pass
+
+          ports:
+            - name: vprormq01
+              containerPort: 15672
+       
