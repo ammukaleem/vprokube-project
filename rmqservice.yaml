@@ -10,6 +10,7 @@ spec:
     - protocol: TCP
       port: 15672
       targetPort: db-port
+      name: rabbitmq-port
   selector:
     app: vprormq01
   type: ClusterIP

@@ -10,6 +10,7 @@ spec:
     - protocol: TCP
       port: 3306
       targetPort: db-port
+      name: db-port
   selector:
     app: vprodb
   type: NodePort 
