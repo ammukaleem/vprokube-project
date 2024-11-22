@@ -3,14 +3,10 @@ kind: Service
 metadata:
   name: vprodb
 spec:
-  selector:
-    labels:
-    app: vprodb
   ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: db-port
-      name: db-port
+  - port: 3306
+    targetPort: vprodb-port
+    protocol: TCP
   selector:
     app: vprodb
-  type: NodePort 
+  type: ClusterIP

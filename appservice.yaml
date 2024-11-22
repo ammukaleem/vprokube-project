@@ -3,13 +3,10 @@ kind: Service
 metadata:
   name: vproapp-service
 spec:
-  selector:
-    labels:
-    app: vproapp
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: vproapp-port
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
     app: vproapp
-  type: LoadBalancer 
+  type: ClusterIP
