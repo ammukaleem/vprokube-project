@@ -32,19 +32,19 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
-    # nodeSelector:
-    #    zone: us-east-1a    
+      nodeSelector:
+        zone: us-east-1a   
       volumes:
         - name: my-db-data
-          hostPath:
-            path: /mnt/data/vprodb
-            type: DirectoryOrCreate
-     #initContainers:        
-     #  - name: busybox
-     #    image: busybox:latest
-     #    args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
-     #    volumeMounts:
-     #      - name: my-db-data
-     #        mountPath: /var/lib/mysql
+          awsElasticBlockStore:
+            volumeID: 
+            fsType: ext4
+      initContainers:        
+        - name: busybox
+          image: busybox:latest
+          args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
+          volumeMounts:
+           - name: my-db-data
+             mountPath: /var/lib/mysql
 
 
