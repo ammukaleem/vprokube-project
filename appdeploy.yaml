@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: vproapp
-        image: dockaleem/vprofileapp
+        image: vprocontainers/vprofileapp
         imagePullPolicy: Always
         ports:
         - name: vproapp-port
